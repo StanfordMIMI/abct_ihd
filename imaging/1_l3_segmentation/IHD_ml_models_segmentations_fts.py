@@ -97,7 +97,7 @@ def main():
         joblib.dump(clf1y, save_fpath)
 
     #Train and save: 1y cohort
-    best_auc_clfs5y, train_x, test_x, _, _ = getBestClassifiers(data_5y, 'muscle_fat', grids, grid_dict, 'AUC')
+    best_auc_clfs5y, _, _, _, _ = getBestClassifiers(data_5y, 'muscle_fat', grids, grid_dict, 'AUC')
     
     for i, clf5y in enumerate(best_auc_clfs5y):
         save_fpath = save_folder + '5y_'.join(grid_dict[i].split()) + '.pkl'
