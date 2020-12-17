@@ -1,5 +1,11 @@
 # AbCT_IHD
-Code for IHD risk asessment from abdominopelvic CTs + EHR data
+Code for IHD risk asessment from abdominopelvic CTs + EHR data, from the following paper (under review):
+
+**Opportunistic Assessment of Ischemic Heart Disease Risk Using Abdominopelvic Computed Tomography and Medical Record Data: a Multimodal Explainable Artificial Intelligence Approach**
+
+Authors: Juan M Zambrano Chaves, Akshay S Chaudhari, Andrew L Wentland, Arjun D Desai, Imon Banerjee, Robert D Boutin, David J Maron, Fatima Rodriguez, Alexander T Sandhu, R Brooke Jeffrey, Daniel Rubin, Bhavik Patel.
+
+
 
 
 ## Installing requirements
