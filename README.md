@@ -6,6 +6,7 @@ Code for IHD risk asessment from abdominopelvic CTs + EHR data
 Run the following in command line:
 ```
 conda create -n abct python=3.6.9
+conda activate abct
 while read requirement; do conda install --yes $requirement || pip install $requirement; done < requirements.txt
 ```
 
