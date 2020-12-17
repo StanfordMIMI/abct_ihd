@@ -3,7 +3,7 @@ Code for IHD risk asessment from abdominopelvic CTs + EHR data
 
 
 ## Installing requirements
-Run the following in command line:
+Requires Linux or MacOS. Create anaconda environment by running the following in command line:
 ```
 conda create -n abct python=3.6.9
 conda activate abct
