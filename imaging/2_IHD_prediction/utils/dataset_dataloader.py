@@ -1,14 +1,12 @@
-import os
-import ast
-import h5py as h5
 import numpy as np
 import pandas as pd
-from torch.utils import data
-from torch.utils.data.dataset import Subset
+import torch
 from scipy.ndimage import median_filter
 from skimage.filters import threshold_otsu
 from skimage.measure import label, regionprops
+from torch.utils.data.dataset import Subset
 from scipy.ndimage import zoom
+import logging
 
 ### Dataset utils
 def load_data(data_path, keep_all_keys=True, dataset_path=None, label_mapper=None):
@@ -103,7 +101,7 @@ def normalizeOneSlice(image, mean_fat, orig_spacing, normalize_spacing, new_spac
         zeroToOne = zeroToOne.astype('uint8')
     return zeroToOne
 
-def getIDsofInterest(split_path):
+def getIDsofInterest(split_path,label_col):
     """
     Returns IDs that are found in a dataset 
     Params:
@@ -111,105 +109,113 @@ def getIDsofInterest(split_path):
     Returns:
         -ids: set of IDs (those found in the split_path file)
     """
-    selected_data = pd.read_csv(split_path)
-    return set(selected_data['id'])
+    data = pd.read_csv(split_path)
+    return set(data[~pd.isna(data[label_col])]['anon_id'])
 
-def getLabels(ids, dataset_path, label_mapper):
+def getLabels(ids, dataset_path, label_col):
     """
     Returns labels for IDs in a dataset 
     Params:
         -ids: list of ids to return labels for. labels are returned in order of ids.
         -split_path: a .csv file that includes the label for each ID
-        -label_mapper: a dictionary mapping label in the .csv file to desired binary label (0/1)
+        -label_col: string containing binary label (0/1)
     Returns:
         -labels: np array of shape (len(ids), 2) with a 1 in the 0-th or 1-st column indicating negative/positive label
     """
-    selected_data = pd.read_csv(dataset_path).set_index('id')
-    id2label = {k:label_mapper[v] for k,v in selected_data['label'].to_dict().items()}
+    data = pd.read_csv(dataset_path).set_index('anon_id')
+    data = data[~pd.isna(data[label_col])]
 
+    id2label = {k:int(v) for k,v in data.to_dict()[label_col].items()}
+    
     labels = np.zeros((len(ids),2))
-
+    
     for i,ID in enumerate(ids):
         labels[i,id2label[ID]] = 1
-
     assert np.sum(labels) == len(ids)
-
     return labels
+
 
 class h5Dataset(data.Dataset):
     def __init__(self, config, transform=None):
         self.config = config
         self.fpath = self.config['data_file']
-
         self.transform = transform
         if 'cache_path' in self.config:
             self.cache_path = self.config['cache_path']
         else:
             self.cache_path = None
-        self.check_cache()
 
+        if '1y' in self.config['split_file']:
+            self.cohort_label_name='1y_label'
+        elif '5y' in self.config['split_file']:
+            self.cohort_label_name='5y_label'
+        else:
+            raise ValueError('Incorrect cohort split file specified (must contain 1y or 5y in name of file)')
+        self.check_cache()
+        
         self.preload_all_data = config['preload_all_data']
         if self.preload_all_data:
-            with np.load(self.cache_path) as loaded_data:
+            with np.load(self.cache_path) as data:
                 self.data = {}
-                self.data['names'] = loaded_data['names']
-                self.data['images'] = loaded_data['images']
-                self.data['labels'] = loaded_data['labels']
+                self.data['names'] = data['names']
+                self.data['images'] = data['images']
+                self.data['labels'] = data['labels']
                 self.keys = self.data['names']
                 self.length = len(self.keys)
-
     def __getitem__(self, index):        
         k = self.keys[index]
-
+            
         if self.cache_path is not None:
             if self.preload_all_data:
                 x = self.data['images'][index]
                 y = self.data['labels'][index]
             else:
-                with np.load(self.cache_path) as loaded_data:
-                    x = loaded_data['images'][index]
-                    y = loaded_data['labels'][index]
+                with np.load(self.cache_path) as data:
+                    x = data['images'][index]
+                    y = data['labels'][index]
 
         else:
             with h5.File(self.fpath, 'r') as h5f:
                 x = h5f[k][()]
-                y = h5f[k].attrs['c2_label']
-                if y == 'Control':
-                    y = 0
-                elif y == 'Ischaemic heart diseases':
-                    y = 1
+                y = h5f[k].attrs[self.cohort_label_name]
         if self.transform is not None:
             x = self.transform(x)
         return x, y, k
-
+    
     def __len__(self):
         return self.length
-
+    
     def setTransform(self, transform):
         self.transform = transform
         return
-
+    
     def check_cache(self):
         cache_filename = os.path.basename(self.fpath).split('.')[0]
-
+        
         if 'cache_path' not in self.config.keys():
             self.config['cache_path'] = self.config['model_path']
-
+            
         cache_path = os.path.join(self.config['cache_path'], cache_filename + '_cache.npz')
 
         if self.config['use_cache'] and os.path.exists(cache_path):
-            print(f'using cache from {cache_path}')
+            logging.info(f'using cache from {cache_path}')
         else:
-            if self.config['use_specific_subset']==True:
-                images, spacings, labels, names = load_data(self.fpath, keep_all_keys=False, dataset_path=self.config['split_file'], \
-                                                       label_mapper=self.config['label_mapper'])
+            images, spacings, labels, names = load_data(self.fpath, dataset_path=self.config['split_file'], \
+                                                           cohort_label=self.cohort_label_name)
+            if 'bychannel' in self.config: 
+                logging.info("about to preprocess by channel")
+                logging.info(self.config['bychannel'])
+                images = normalize_and_preprocess_bychannel(images, self.config['thresh_low'], \
+                                              self.config['thresh_high'], spacings, self.config['normalize_spacing'], \
+                                              self.config['new_spacing'], self.config['new_img_size'], \
+                                              self.config['remove_bed'], self.config['as_integer'],
+                                            mode=self.config['bychannel'])
             else:
-                images, spacings, labels, names = load_data(self.fpath)
-            images = normalize_and_preprocess(images, self.config['num_neighbors'], self.config['thresh_low'], \
-                                            self.config['thresh_high'], spacings, self.config['normalize_spacing'], \
-                                            self.config['new_spacing'], self.config['new_img_size'], self.config['normalize_fat'], \
-                                            self.config['remove_bed'], self.config['as_integer'])
-            args = {'number neighboring slices':self.config['num_neighbors'], 
+                images = normalize_and_preprocess(images, self.config['thresh_low'], \
+                                              self.config['thresh_high'], spacings, self.config['normalize_spacing'], \
+                                              self.config['new_spacing'], self.config['new_img_size'], self.config['normalize_fat'], \
+                                              self.config['remove_bed'], self.config['as_integer'])
+            args = {'number neighboring slices':0, 
                     'clipping values': (self.config['thresh_low'], self.config['thresh_high']),
                     'spacing normalized': self.config['normalize_spacing'], 
                     'new spacing (if normalized)': self.config['new_spacing'], 
@@ -221,6 +227,10 @@ class h5Dataset(data.Dataset):
                                 labels=labels, names=names, params=args)
         self.cache_path = cache_path
         return
+
+
+
+
 
 ### Dataloader utils
 def normalize_fat(img, fat_low=-190, fat_high=-30):
@@ -259,8 +269,6 @@ def bed_removal(image, return_mask=False):
     return np.multiply(image, mask)
 
 def mergePixelSpacingAndThickness(pixel_spacings, thicknesses):
-    if type(pixel_spacings[0]) == str:
-        pixel_spacings = np.asarray([ast.literal_eval(x) for x in pixel_spacings]).astype('f')
     spacings = np.empty((pixel_spacings.shape[0], pixel_spacings.shape[1]+1))
     spacings[:,:2] = pixel_spacings
     spacings[:,2] = thicknesses

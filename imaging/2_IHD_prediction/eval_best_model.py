@@ -14,15 +14,15 @@ if __name__ == "__main__":
     
     #best 5 year outcome cohort
 
-    modelPath = '/PATH_TO/models/efficientnet_5y_1_0lr_1e-06_batchSize_8_nEpochs_50_auroc_0.7969.pth' 
+    modelPath = '/PATH_TO/models/efficientnet_5y_1_0lr_6e-06_batchSize_8_nEpochs_9_auroc_0.7947.pth' 
     config_path = './configs/efficientnet_5y_1_0.cfg'
-    transformed_data_path = '/PATH_TO/data/5y_image_only_preds.csv' 
+    transformed_data_path = '/PATH_TO/predictions/5y_image_only_preds.csv' 
         
     #best 1 year outcome cohort
 
-    modelPath = '/PATH_TO/models/efficientnet_1y_1_0lr_1e-05_batchSize_8_nEpochs_10_auroc_0.7331.pth'
+    modelPath = '/PATH_TO/models/efficientnet_1y_1_0lr_7e-06_batchSize_8_nEpochs_7_auroc_0.7733.pth'
     configPath = './configs/efficientnet_1y_1_0.cfg'
-    transformed_data_path = '/PATH_TO/data/1y_image_only_preds.csv' 
+    transformed_data_path = '/PATH_TO/predictions/1y_image_only_preds.csv' 
 
     if torch.cuda.is_available():
         device = torch.device('cuda')
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     epoch_acc = {}
 
     with open(transformed_data_path,'w') as fout:
-        fout.write('\t'.join(['phase','key','label','preds','scores','score_0', 'score_1'])+'\n')
+        fout.write('\t'.join(['anon_id','score_0', 'score_1'])+'\n')
 
     for phase in ['train','val','test']:
         model.eval()  # Set model to evaluate mode
@@ -92,8 +92,7 @@ if __name__ == "__main__":
             running_probs.extend(list(probs.cpu().numpy()))
         with open(transformed_data_path,'a') as fout:
             for i,k in enumerate(running_keys):
-                fout.write('\t'.join([str(x) for x in [phase, k,running_labels[i], running_preds[i], running_scores[i],
-                                                      running_scores[i][0], running_scores[i][1]]])+'\n')
+                fout.write('\t'.join([str(x) for x in [k, running_scores[i][0], running_scores[i][1]]])+'\n')
         epoch_loss[phase] = running_loss / dataset_sizes[phase]
         epoch_acc[phase] = running_corrects.double() / dataset_sizes[phase]
         curve[phase], AUROC[phase] = getAUROC(np.array(running_labels), np.array(running_probs))

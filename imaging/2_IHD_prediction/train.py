@@ -18,14 +18,17 @@ from utils.dataset_dataloader import trainValTestSplit
 from utils.data_transforms import getTransform
 from utils.model_eval import getAUROC
 from utils.loss import FocalLoss
+import logging
 
 def parse_args():
     """Parses command line arguments (path to config file)"""
     parser = argparse.ArgumentParser()
     parser.add_argument("-config", help="path to config file",
                         default = './configs/sample_config.cfg')
+    parser.add_argument("-log", help="path to log dir",
+                            default = '')
     args = parser.parse_args()
-
+    logging.basicConfig(filename=str(args.log)+str(args.config).replace('configs','logs').replace('.cfg','.log'), level=logging.INFO)
     return str(args.config)
 
 def load_config(config_f_path):
@@ -133,8 +136,8 @@ def train_one_epoch(scheduler, model, device, dtype, dataloaders, optimizer, cri
                     loss.backward()
                     optimizer.step()
                     if verbose and t%100 == 0:
-                        print('Iteration %d, loss = %.4f' % (t, loss.item()))
-                        print()
+                        logging.info('Iteration %d, loss = %.4f' % (t, loss.item()))
+                        logging.info()
 
              # statistics
             running_loss += loss.item() * x.size(0)
@@ -146,7 +149,7 @@ def train_one_epoch(scheduler, model, device, dtype, dataloaders, optimizer, cri
         epoch_acc[phase] = running_corrects.double() / dataset_sizes[phase]
         _, AUROC[phase] = getAUROC(np.array(running_labels), np.array(running_probs)[:,1])
 
-        print(f"{phase} \t Loss: {epoch_loss[phase]:.4f} \t AUROC: {AUROC[phase]['AUROC']:.4f} \t Acc:{epoch_acc[phase]:.4f}")
+        logging.info(f"{phase} \t Loss: {epoch_loss[phase]:.4f} \t AUROC: {AUROC[phase]['AUROC']:.4f} \t Acc:{epoch_acc[phase]:.4f}")
     return model, epoch_loss, AUROC
 
 def train_model(model, criterion, learn_rate, scheduler, num_epochs, dataloaders, dataset_sizes, verbose=False,
@@ -159,10 +162,9 @@ def train_model(model, criterion, learn_rate, scheduler, num_epochs, dataloaders
         device = torch.device('cuda')
     else:
         device = torch.device('cpu') #not recommended
-
+    logging.info(f"using {device}")
     since = time.time()
-    if torch.cuda.device_count() > 1:
-        model = nn.DataParallel(model)
+    
     model.to(device)
     if differential_lr == False:
         optimizer = optim.Adam(model.trainableParams(), lr=learn_rate)
@@ -186,8 +188,8 @@ def train_model(model, criterion, learn_rate, scheduler, num_epochs, dataloaders
             best_model_wts = copy.deepcopy(model.state_dict())
 
     time_elapsed = time.time() - since
-    print(f'Saving model weights with best val AUROC: {best_auroc}')
-    print(f'Training complete in {(time_elapsed//60):.0f}m {(time_elapsed%60):.0f}s')
+    logging.info(f'Saving model weights with best val AUROC: {best_auroc}')
+    logging.info(f'Training complete in {(time_elapsed//60):.0f}m {(time_elapsed%60):.0f}s')
 
     # load best model weights
     model.load_state_dict(best_model_wts)
