@@ -3,7 +3,7 @@ Code for IHD risk asessment from abdominopelvic CTs + EHR data, from the followi
 
 **Opportunistic Assessment of Ischemic Heart Disease Risk Using Abdominopelvic Computed Tomography and Medical Record Data: A Multimodal Explainable Artificial Intelligence Approach**
 
-Authors: [redacted]
+Authors: Juan M Zambrano Chaves, Andrew L Wentland, Arjun D Desai, Imon Banerjee, Gurkiran Kaur, Ramon Correa, Robert D Boutin, David J Maron, Fatima Rodriguez, Alexander T Sandhu, R Brooke Jeffrey, Daniel Rubin, Akshay S Chaudhari, Bhavik Patel.
 
 
 
