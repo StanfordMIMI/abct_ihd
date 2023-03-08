@@ -48,3 +48,85 @@ aids_codes <- c('B37','C53','B38','B45','A07.2','B25','G93.4x','B00','B39','A07.
 # AIDS (Condition 19) trumps HIV (Condition 14)
 # Scores: 1-11: 1, 12-14: 2, 15-17:3, 18-19:6
 
+relevant_codes <- c(mi_codes, hf_codes, pvd_codes, cvd_codes, dementia_codes, cpulmd_codes,
+                                 rheum_codes, pep_ul_codes, liv_codes, diabetes_codes, kidney_codes,
+                                 comp_diabetes_codes, plegia_codes, malign_codes, sev_liv_codes,
+                                 sev_renal_codes, hiv_codes, mets_codes, aids_codes)
+
+relevant_cols <- function(codes, table) {
+                return (tibble('cols' = names(table)) %>% 
+                          filter(str_detect(cols, "icd")) %>%
+                          mutate(code = str_remove(cols,"icd10_")) %>%
+                          filter(grepl(paste('^', paste(c(gsub('x$','',codes)), collapse='|^'), sep=''), code)) %>%
+                          select(cols) %>%
+                          pull)
+                }
+  
+cci_1y <- ft_matrix_1yr %>%
+  select(anon_id, all_of(relevant_cols(relevant_codes, ft_matrix_1yr))) %>%
+  rowwise() %>%
+  mutate(score_mi = sum(c_across(all_of(relevant_cols(mi_codes, ft_matrix_1yr)))) > 0, 
+         score_hf = sum(c_across(all_of(relevant_cols(hf_codes, ft_matrix_1yr)))) > 0,
+         score_pvd = sum(c_across(all_of(relevant_cols(pvd_codes, ft_matrix_1yr)))) > 0,
+         score_cvd = sum(c_across(all_of(relevant_cols(cvd_codes, ft_matrix_1yr)))) > 0,
+         score_dementia = sum(c_across(all_of(relevant_cols(dementia_codes, ft_matrix_1yr)))) > 0,
+         score_cpulmd = sum(c_across(all_of(relevant_cols(cpulmd_codes, ft_matrix_1yr)))) > 0,
+         score_rheum = sum(c_across(all_of(relevant_cols(rheum_codes, ft_matrix_1yr)))) > 0,
+         score_pep_ul = sum(c_across(all_of(relevant_cols(pep_ul_codes, ft_matrix_1yr)))) > 0,
+         score_liv = sum(c_across(all_of(relevant_cols(liv_codes, ft_matrix_1yr)))) > 0,
+         score_dm = sum(c_across(all_of(relevant_cols(diabetes_codes, ft_matrix_1yr)))) > 0,
+         score_kidney = sum(c_across(all_of(relevant_cols(kidney_codes, ft_matrix_1yr)))) > 0,
+         score_comp_dm = sum(c_across(all_of(relevant_cols(comp_diabetes_codes, ft_matrix_1yr)))) > 0,
+         score_plegia = sum(c_across(all_of(relevant_cols(plegia_codes, ft_matrix_1yr)))) > 0,
+         score_malign = sum(c_across(all_of(relevant_cols(malign_codes, ft_matrix_1yr)))) > 0,
+         score_liv_sev = sum(c_across(all_of(relevant_cols(sev_liv_codes, ft_matrix_1yr)))) > 0,
+         score_renal_sev = sum(c_across(all_of(relevant_cols(sev_renal_codes, ft_matrix_1yr)))) > 0,
+         score_hiv = sum(c_across(all_of(relevant_cols(hiv_codes, ft_matrix_1yr)))) > 0,
+         score_mets = sum(c_across(all_of(relevant_cols(mets_codes, ft_matrix_1yr)))) > 0,
+         score_aids = sum(c_across(all_of(relevant_cols(aids_codes, ft_matrix_1yr)))) > 0) %>%
+  ungroup %>%
+  select(anon_id, all_of(starts_with('score'))) %>%
+  mutate(CCI = 1*score_mi + 1*score_hf+1*score_pvd+1*score_dementia+1*score_cpulmd+
+                1*score_rheum+1*score_pep_ul+
+                if_else(score_plegia, 2, 1*score_cvd)+
+                if_else(score_liv_sev, 3, 1*score_liv)+
+                if_else(score_comp_dm, 2, 1*score_dm)+
+                if_else(score_renal_sev, 3, 1*score_kidney)+
+                if_else(score_mets, 6, 2*score_malign)+
+                if_else(score_aids, 6, 3*score_hiv))
+
+cci_5y <- ft_matrix_5yr %>%
+  select(anon_id, all_of(relevant_cols(relevant_codes, ft_matrix_5yr))) %>%
+  rowwise() %>%
+  mutate(score_mi = sum(c_across(all_of(relevant_cols(mi_codes, ft_matrix_5yr)))) > 0, 
+         score_hf = sum(c_across(all_of(relevant_cols(hf_codes, ft_matrix_5yr)))) > 0,
+         score_pvd = sum(c_across(all_of(relevant_cols(pvd_codes, ft_matrix_5yr)))) > 0,
+         score_cvd = sum(c_across(all_of(relevant_cols(cvd_codes, ft_matrix_5yr)))) > 0,
+         score_dementia = sum(c_across(all_of(relevant_cols(dementia_codes, ft_matrix_5yr)))) > 0,
+         score_cpulmd = sum(c_across(all_of(relevant_cols(cpulmd_codes, ft_matrix_5yr)))) > 0,
+         score_rheum = sum(c_across(all_of(relevant_cols(rheum_codes, ft_matrix_5yr)))) > 0,
+         score_pep_ul = sum(c_across(all_of(relevant_cols(pep_ul_codes, ft_matrix_5yr)))) > 0,
+         score_liv = sum(c_across(all_of(relevant_cols(liv_codes, ft_matrix_5yr)))) > 0,
+         score_dm = sum(c_across(all_of(relevant_cols(diabetes_codes, ft_matrix_5yr)))) > 0,
+         score_kidney = sum(c_across(all_of(relevant_cols(kidney_codes, ft_matrix_5yr)))) > 0,
+         score_comp_dm = sum(c_across(all_of(relevant_cols(comp_diabetes_codes, ft_matrix_5yr)))) > 0,
+         score_plegia = sum(c_across(all_of(relevant_cols(plegia_codes, ft_matrix_5yr)))) > 0,
+         score_malign = sum(c_across(all_of(relevant_cols(malign_codes, ft_matrix_5yr)))) > 0,
+         score_liv_sev = sum(c_across(all_of(relevant_cols(sev_liv_codes, ft_matrix_5yr)))) > 0,
+         score_renal_sev = sum(c_across(all_of(relevant_cols(sev_renal_codes, ft_matrix_5yr)))) > 0,
+         score_hiv = sum(c_across(all_of(relevant_cols(hiv_codes, ft_matrix_5yr)))) > 0,
+         score_mets = sum(c_across(all_of(relevant_cols(mets_codes, ft_matrix_5yr)))) > 0,
+         score_aids = sum(c_across(all_of(relevant_cols(aids_codes, ft_matrix_5yr)))) > 0) %>%
+  ungroup %>%
+  select(anon_id, all_of(starts_with('score'))) %>%
+  mutate(CCI = 1*score_mi + 1*score_hf+1*score_pvd+1*score_dementia+1*score_cpulmd+
+           1*score_rheum+1*score_pep_ul+
+           if_else(score_plegia, 2, 1*score_cvd)+
+           if_else(score_liv_sev, 3, 1*score_liv)+
+           if_else(score_comp_dm, 2, 1*score_dm)+
+           if_else(score_renal_sev, 3, 1*score_kidney)+
+           if_else(score_mets, 6, 2*score_malign)+
+           if_else(score_aids, 6, 3*score_hiv))
+
+write_csv(select(cci_1y, anon_id, CCI), paste(dataPath, 'IHD_8139_1y_CCI.csv', sep='/'))
+write_csv(select(cci_5y, anon_id, CCI), paste(dataPath, 'IHD_8139_5y_CCI.csv', sep='/'))
