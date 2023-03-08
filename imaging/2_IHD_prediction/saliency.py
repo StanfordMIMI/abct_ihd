@@ -21,7 +21,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("-type", help="type of attribution",
                         default = 'saliency')
-    parser.add_argument("-cohort", help="suffix to add to output file path (i.e. after /dataNAS/people/jmz/data/opportunistic/abct_ihd/attributions/)",
+    parser.add_argument("-cohort", help="suffix to add to output file path (i.e. after /PATH_TO/attributions/)",
                         default = '1y_')
     
     args = parser.parse_args()
