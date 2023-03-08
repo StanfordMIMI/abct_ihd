@@ -51,8 +51,8 @@ def bootStrapModelAUROC(y_true, y_pred, numBootstraps=1000):
         bootstrapAUROCs.append(score)
     sortedAUROCs = np.array(bootstrapAUROCs)
     sortedAUROCs.sort()
-    lower_ci = sortedAUROCs[int(0.05*len(sortedAUROCs))]
-    upper_ci = sortedAUROCs[int(0.95*len(sortedAUROCs))]
+    lower_ci = sortedAUROCs[int(0.025*len(sortedAUROCs))]
+    upper_ci = sortedAUROCs[int(0.975*len(sortedAUROCs))]
     return lower_ci, upper_ci
 
 def bootStrapModelAUPRC(y_true, y_pred, numBootstraps=1000):
@@ -70,8 +70,8 @@ def bootStrapModelAUPRC(y_true, y_pred, numBootstraps=1000):
         bootstrapAUPRCs.append(score)
     sortedAUPRCs = np.array(bootstrapAUPRCs)
     sortedAUPRCs.sort()
-    lower_ci = sortedAUPRCs[int(0.05*len(sortedAUPRCs))]
-    upper_ci = sortedAUPRCs[int(0.95*len(sortedAUPRCs))]
+    lower_ci = sortedAUPRCs[int(0.025*len(sortedAUPRCs))]
+    upper_ci = sortedAUPRCs[int(0.975*len(sortedAUPRCs))]
     return lower_ci, upper_ci
 
 
