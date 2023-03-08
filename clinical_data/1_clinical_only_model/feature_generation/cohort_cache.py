@@ -195,16 +195,6 @@ def get_lab_tests(split, cohort):
                         .filter(regex='^(?!.*_DROP)')
     cohort_labs = cohort_labs.drop(columns=['patient_id'])
 
-    '''
-    cohort_labs['valid_result_date'] = pd.to_datetime(cohort_labs.result_date, format='%m/%d/%Y %H:%M', utc=True, errors='coerce')
-    cohort_labs = cohort_labs.dropna(subset=['valid_result_date'])
-    cohort_labs = cohort_labs.assign(
-        time_to_ct=(pd.to_datetime(cohort_labs.ct_date, format='%Y-%m-%d', utc=True) \
-                   - pd.to_datetime(cohort_labs.result_date, format='%m/%d/%Y %H:%M', utc=True)) \
-                   .apply(lambda x: x.days))
-    cohort_labs = cohort_labs[['mrn', 'accession', 'type', 'result', 'value', 'units', 'time_to_ct']]
-    '''
-
     return cohort_labs
 
 def get_all_lab_tests():
