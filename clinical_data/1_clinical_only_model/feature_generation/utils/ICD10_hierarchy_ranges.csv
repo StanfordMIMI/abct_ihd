@@ -1,0 +1,231 @@
+﻿ONTOLOGY,UNIQUE_NAME,PARENT,HIERARCHY,DESC,RNG_MIN,RNG_MAX
+ICD10,Chapter I,NA,1,Certain infectious and parasitic diseases,A00,B99
+ICD10,Chapter II,NA,1,Neoplasms,C00,D48
+ICD10,Chapter III,NA,1,Diseases of blood and blood-forming organs and certain disorders involving the immune mechanisms,D50,D89
+ICD10,Chapter IV,NA,1,"Endocrine, nutritional and metabolic diseases",E00,E90
+ICD10,Chapter IX,NA,1,Diseases of the circulatory system,I00,I99
+ICD10,Chapter V,NA,1,"Mental, behavioural disorders",F00,F99
+ICD10,Chapter VI,NA,1,Diseases of the nervous system,G00,G99
+ICD10,Chapter VII,NA,1,Diseases of the eye and adnexa,H00,H59
+ICD10,Chapter VIII,NA,1,Diseases of the ear and mastoid process,H60,H95
+ICD10,Chapter X,NA,1,Diseases of the respiratory system,J00,J99
+ICD10,Chapter XI,NA,1,Diseases of the digestive system,K00,K93
+ICD10,Chapter XII,NA,1,Diseases of the skin and subcutaneous tissue,L00,L99
+ICD10,Chapter XIII,NA,1,Diseases of the musculoskeletal system and connective tissue,M00,M99
+ICD10,Chapter XIV,NA,1,Diseases of the genitourinary system,N00,N99
+ICD10,Chapter XIX,NA,1,"Injury, poisoning and certain other consequences of external causes",S00,T98
+ICD10,Chapter XV,NA,1,"Pregnancy, childbirth and the puerperium",O00,O99
+ICD10,Chapter XVI,NA,1,Certain conditions originating in the perinatal period,P00,P96
+ICD10,Chapter XVII,NA,1,"Congenital malformations, deformations and chromosomal abnormalities",Q00,Q99
+ICD10,Chapter XVIII,NA,1,"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified",R00,R99
+ICD10,Chapter XX,NA,1,External causes of morbidity and mortality,V01,Y98
+ICD10,Chapter XXI,NA,1,Factors influencing health status and contact with health services,Z00,Z99
+ICD10,Chapter_I_1,Chapter I,2,Intestinal infectious diseases,A00,A09
+ICD10,Chapter_I_2,Chapter I,2,Tuberculosis,A15,A19
+ICD10,Chapter_I_3,Chapter I,2,Certain zoonotic bacterial diseases,A20,A28
+ICD10,Chapter_I_4,Chapter I,2,Other bacterial diseases,A30,A49
+ICD10,Chapter_I_5,Chapter I,2,Infections with a predominantly sexual mode of transmission,A50,A64
+ICD10,Chapter_I_6,Chapter I,2,Other spirochaetal diseases,A65,A69
+ICD10,Chapter_I_7,Chapter I,2,Other diseases caused by chlamydiae,A70,A74
+ICD10,Chapter_I_8,Chapter I,2,Rickettsioses,A75,A79
+ICD10,Chapter_I_9,Chapter I,2,Viral infections of the central nervous system,A80,A89
+ICD10,Chapter_I_10,Chapter I,2,Arthropod-borne viral fevers and viral haemorrhagic fevers,A92,A99
+ICD10,Chapter_I_11,Chapter I,2,Viral infections characterized by skin and mucous membrane lesions,B00,B09
+ICD10,Chapter_I_12,Chapter I,2,Viral hepatitis,B15,B19
+ICD10,Chapter_I_13,Chapter I,2,Human immunodeficiency virus [HIV] disease,B20,B24
+ICD10,Chapter_I_14,Chapter I,2,Other viral diseases,B25,B34
+ICD10,Chapter_I_15,Chapter I,2,Mycoses,B35,B49
+ICD10,Chapter_I_16,Chapter I,2,Protozoal diseases,B50,B64
+ICD10,Chapter_I_17,Chapter I,2,Helminthiases,B65,B83
+ICD10,Chapter_I_18,Chapter I,2,"Pediculosis, acariasis and other infestations",B85,B89
+ICD10,Chapter_I_19,Chapter I,2,Sequelae of infectious and parasitic diseases,B90,B94
+ICD10,Chapter_I_20,Chapter I,2,"Bacterial, viral and other infectious agents",B95,B98
+ICD10,Chapter_I_21,Chapter I,2,Other infectious diseases,B99,B99
+ICD10,Chapter_II_1,Chapter II,2,Malignant neoplasms,C00,C97
+ICD10,Chapter_II_2,Chapter II,2,In situ neoplasms,D00,D09
+ICD10,Chapter_II_3,Chapter II,2,Benign neoplasms,D10,D36
+ICD10,Chapter_II_4,Chapter II,2,Neoplasms of uncertain or unknown behaviour,D37,D48
+ICD10,Chapter_III_1,Chapter III,2,Nutritional anaemias,D50,D53
+ICD10,Chapter_III_2,Chapter III,2,Haemolytic anaemias,D55,D59
+ICD10,Chapter_III_3,Chapter III,2,Aplastic and other anaemias,D60,D64
+ICD10,Chapter_III_4,Chapter III,2,"Coagulation defects, purpura and other haemorrhagic conditions",D65,D69
+ICD10,Chapter_III_5,Chapter III,2,Other diseases of blood and blood-forming organs,D70,D77
+ICD10,Chapter_III_6,Chapter III,2,Certain disorders involving the immune mechanism,D80,D89
+ICD10,Chapter_IV_1,Chapter IV,2,Disorders of thyroid gland,E00,E07
+ICD10,Chapter_IV_2,Chapter IV,2,Diabetes mellitus,E10,E14
+ICD10,Chapter_IV_3,Chapter IV,2,Other disorders of glucose regulation and pancreatic internal secretion,E15,E16
+ICD10,Chapter_IV_4,Chapter IV,2,Disorders of other endocrine glands,E20,E35
+ICD10,Chapter_IV_5,Chapter IV,2,Malnutrition,E40,E46
+ICD10,Chapter_IV_6,Chapter IV,2,Other nutritional deficiencies,E50,E64
+ICD10,Chapter_IV_7,Chapter IV,2,Obesity and other hyperalimentation,E65,E68
+ICD10,Chapter_IV_8,Chapter IV,2,Metabolic disorders,E70,E90
+ICD10,Chapter_V_1,Chapter V,2,"Organic, including symptomatic, mental disorders",F00,F09
+ICD10,Chapter_V_2,Chapter V,2,Mental and behavioural disorders due to psychoactive substance use,F10,F19
+ICD10,Chapter_V_3,Chapter V,2,"Schizophrenia, schizotypal and delusional disorders",F20,F29
+ICD10,Chapter_V_4,Chapter V,2,Mood [affective] disorders,F30,F39
+ICD10,Chapter_V_5,Chapter V,2,"Neurotic, stress-related and somatoform disorders",F40,F48
+ICD10,Chapter_V_6,Chapter V,2,Behavioural syndromes associated with physiological disturbances and physical factors,F50,F59
+ICD10,Chapter_V_7,Chapter V,2,Disorders of adult personality and behaviour,F60,F69
+ICD10,Chapter_V_8,Chapter V,2,Mental retardation,F70,F79
+ICD10,Chapter_V_9,Chapter V,2,Disorders of psychological development,F80,F89
+ICD10,Chapter_V_10,Chapter V,2,Behavioural and emotional disorders with onset usually occurring in childhood and adolescence,F90,F98
+ICD10,Chapter_V_11,Chapter V,2,Unspecified mental disorder,F99,F99
+ICD10,Chapter_VI_1,Chapter VI,2,Inflammatory diseases of the central nervous system,G00,G09
+ICD10,Chapter_VI_2,Chapter VI,2,Systemic atrophies primarily affecting the central nervous system,G10,G14
+ICD10,Chapter_VI_3,Chapter VI,2,Extrapyramidal and movement disorders,G20,G26
+ICD10,Chapter_VI_4,Chapter VI,2,Other degenerative diseases of the nervous system,G30,G32
+ICD10,Chapter_VI_5,Chapter VI,2,Demyelinating diseases of the central nervous system,G35,G37
+ICD10,Chapter_VI_6,Chapter VI,2,Episodic and paroxysmal disorders,G40,G47
+ICD10,Chapter_VI_7,Chapter VI,2,"Nerve, nerve root and plexus disorders",G50,G59
+ICD10,Chapter_VI_8,Chapter VI,2,Polyneuropathies and other disorders of the peripheral nervous system,G60,G64
+ICD10,Chapter_VI_9,Chapter VI,2,Diseases of myoneural junction and muscle,G70,G73
+ICD10,Chapter_VI_10,Chapter VI,2,Cerebral palsy and other paralytic syndromes,G80,G83
+ICD10,Chapter_VI_11,Chapter VI,2,Other disorders of the nervous system,G90,G99
+ICD10,Chapter_VII_1,Chapter VII,2,"Disorders of eyelid, lacrimal system and orbit",H00,H06
+ICD10,Chapter_VII_2,Chapter VII,2,Disorders of conjunctiva,H10,H13
+ICD10,Chapter_VII_3,Chapter VII,2,"Disorders of sclera, cornea, iris and ciliary body",H15,H22
+ICD10,Chapter_VII_4,Chapter VII,2,Disorders of lens,H25,H28
+ICD10,Chapter_VII_5,Chapter VII,2,Disorders of choroid and retina,H30,H36
+ICD10,Chapter_VII_6,Chapter VII,2,Glaucoma,H40,H42
+ICD10,Chapter_VII_7,Chapter VII,2,Disorders of vitreous body and globe,H43,H45
+ICD10,Chapter_VII_8,Chapter VII,2,Disorders of optic nerve and visual pathways,H46,H48
+ICD10,Chapter_VII_9,Chapter VII,2,"Disorders of ocular muscles, binocular movement, accommodation and refraction",H49,H52
+ICD10,Chapter_VII_10,Chapter VII,2,Visual disturbances and blindness,H53,H54
+ICD10,Chapter_VII_11,Chapter VII,2,Other disorders of eye and adnexa,H55,H59
+ICD10,Chapter_VIII_1,Chapter VIII,2,Diseases of external ear,H60,H62
+ICD10,Chapter_VIII_2,Chapter VIII,2,Diseases of middle ear and mastoid,H65,H75
+ICD10,Chapter_VIII_3,Chapter VIII,2,Diseases of inner ear,H80,H83
+ICD10,Chapter_VIII_4,Chapter VIII,2,Other disorders of ear,H90,H95
+ICD10,Chapter_IX_1,Chapter IX,2,Acute rheumatic fever,I00,I02
+ICD10,Chapter_IX_2,Chapter IX,2,Chronic rheumatic heart diseases,I05,I09
+ICD10,Chapter_IX_3,Chapter IX,2,Hypertensive diseases,I10,I15
+ICD10,Chapter_IX_4,Chapter IX,2,Ischaemic heart diseases,I20,I25
+ICD10,Chapter_IX_5,Chapter IX,2,Pulmonary heart disease and diseases of pulmonary circulation,I26,I28
+ICD10,Chapter_IX_6,Chapter IX,2,Other forms of heart disease,I30,I52
+ICD10,Chapter_IX_7,Chapter IX,2,Cerebrovascular diseases,I60,I69
+ICD10,Chapter_IX_8,Chapter IX,2,"Diseases of arteries, arterioles and capillaries",I70,I79
+ICD10,Chapter_IX_9,Chapter IX,2,"Diseases of veins, lymphatic vessels and lymph nodes, not elsewhere classified",I80,I89
+ICD10,Chapter_IX_10,Chapter IX,2,Other and unspecified disorders of the circulatory system,I95,I99
+ICD10,Chapter_X_1,Chapter X,2,Acute upper respiratory infections,J00,J06
+ICD10,Chapter_X_2,Chapter X,2,Influenza and pneumonia,J09,J18
+ICD10,Chapter_X_3,Chapter X,2,Other acute lower respiratory infections,J20,J22
+ICD10,Chapter_X_4,Chapter X,2,Other diseases of upper respiratory tract,J30,J39
+ICD10,Chapter_X_5,Chapter X,2,Chronic lower respiratory diseases,J40,J47
+ICD10,Chapter_X_6,Chapter X,2,Lung diseases due to external agents,J60,J70
+ICD10,Chapter_X_7,Chapter X,2,Other respiratory diseases principally affecting the interstitium,J80,J84
+ICD10,Chapter_X_8,Chapter X,2,Suppurative and necrotic conditions of lower respiratory tract,J85,J86
+ICD10,Chapter_X_9,Chapter X,2,Other diseases of pleura,J90,J94
+ICD10,Chapter_X_10,Chapter X,2,Other diseases of the respiratory system,J95,J99
+ICD10,Chapter_XI_1,Chapter XI,2,"Diseases of oral cavity, salivary glands and jaws",K00,K14
+ICD10,Chapter_XI_2,Chapter XI,2,"Diseases of oesophagus, stomach and duodenum",K20,K31
+ICD10,Chapter_XI_3,Chapter XI,2,Diseases of appendix,K35,K38
+ICD10,Chapter_XI_4,Chapter XI,2,Hernia,K40,K46
+ICD10,Chapter_XI_5,Chapter XI,2,Noninfective enteritis and colitis,K50,K52
+ICD10,Chapter_XI_6,Chapter XI,2,Other diseases of intestines,K55,K64
+ICD10,Chapter_XI_7,Chapter XI,2,Diseases of peritoneum,K65,K67
+ICD10,Chapter_XI_8,Chapter XI,2,Diseases of liver,K70,K77
+ICD10,Chapter_XI_9,Chapter XI,2,"Disorders of gallbladder, biliary tract and pancreas",K80,K87
+ICD10,Chapter_XI_10,Chapter XI,2,Other diseases of the digestive system,K90,K93
+ICD10,Chapter_XII_1,Chapter XII,2,Infections of the skin and subcutaneous tissue,L00,L08
+ICD10,Chapter_XII_2,Chapter XII,2,Bullous disorders,L10,L14
+ICD10,Chapter_XII_3,Chapter XII,2,Dermatitis and eczema,L20,L30
+ICD10,Chapter_XII_4,Chapter XII,2,Papulosquamous disorders,L40,L45
+ICD10,Chapter_XII_5,Chapter XII,2,Urticaria and erythema,L50,L54
+ICD10,Chapter_XII_6,Chapter XII,2,Radiation-related disorders of the skin and subcutaneous tissue,L55,L59
+ICD10,Chapter_XII_7,Chapter XII,2,Disorders of skin appendages,L60,L75
+ICD10,Chapter_XII_8,Chapter XII,2,Other disorders of the skin and subcutaneous tissue,L80,L99
+ICD10,Chapter_XIII_1,Chapter XIII,2,Arthropathies,M00,M25
+ICD10,Chapter_XIII_2,Chapter XIII,2,Systemic connective tissue disorders,M30,M36
+ICD10,Chapter_XIII_3,Chapter XIII,2,Dorsopathies,M40,M54
+ICD10,Chapter_XIII_4,Chapter XIII,2,Soft tissue disorders,M60,M79
+ICD10,Chapter_XIII_5,Chapter XIII,2,Osteopathies and chondropathies,M80,M94
+ICD10,Chapter_XIII_6,Chapter XIII,2,Other disorders of the musculoskeletal system and connective tissue,M95,M99
+ICD10,Chapter_XIV_1,Chapter XIV,2,Glomerular diseases,N00,N08
+ICD10,Chapter_XIV_2,Chapter XIV,2,Renal tubulo-interstitial diseases,N10,N16
+ICD10,Chapter_XIV_3,Chapter XIV,2,Renal failure,N17,N19
+ICD10,Chapter_XIV_4,Chapter XIV,2,Urolithiasis,N20,N23
+ICD10,Chapter_XIV_5,Chapter XIV,2,Other disorders of kidney and ureter,N25,N29
+ICD10,Chapter_XIV_6,Chapter XIV,2,Other diseases of urinary system,N30,N39
+ICD10,Chapter_XIV_7,Chapter XIV,2,Diseases of male genital organs,N40,N51
+ICD10,Chapter_XIV_8,Chapter XIV,2,Disorders of breast,N60,N64
+ICD10,Chapter_XIV_9,Chapter XIV,2,Inflammatory diseases of female pelvic organs,N70,N77
+ICD10,Chapter_XIV_10,Chapter XIV,2,Noninflammatory disorders of female genital tract,N80,N98
+ICD10,Chapter_XIV_11,Chapter XIV,2,Other disorders of the genitourinary system,N99,N99
+ICD10,Chapter_XV_1,Chapter XV,2,Pregnancy with abortive outcome,O00,O08
+ICD10,Chapter_XV_2,Chapter XV,2,"Oedema, proteinuria and hypertensive disorders in pregnancy, childbirth and the puerperium",O10,O16
+ICD10,Chapter_XV_3,Chapter XV,2,Other maternal disorders predominantly related to pregnancy,O20,O29
+ICD10,Chapter_XV_4,Chapter XV,2,Maternal care related to the fetus and amniotic cavity and possible delivery problems,O30,O48
+ICD10,Chapter_XV_5,Chapter XV,2,Complications of labour and delivery,O60,O75
+ICD10,Chapter_XV_6,Chapter XV,2,Delivery,O80,O84
+ICD10,Chapter_XV_7,Chapter XV,2,Complications predominantly related to the puerperium,O85,O92
+ICD10,Chapter_XV_8,Chapter XV,2,"Other obstetric conditions, not elsewhere classified",O94,O99
+ICD10,Chapter_XVI_1,Chapter XVI,2,"Fetus and newborn affected by maternal factors and by complications of pregnancy, labour and delivery",P00,P04
+ICD10,Chapter_XVI_2,Chapter XVI,2,Disorders related to length of gestation and fetal growth,P05,P08
+ICD10,Chapter_XVI_3,Chapter XVI,2,Birth trauma,P10,P15
+ICD10,Chapter_XVI_4,Chapter XVI,2,Respiratory and cardiovascular disorders specific to the perinatal period,P20,P29
+ICD10,Chapter_XVI_5,Chapter XVI,2,Infections specific to the perinatal period,P35,P39
+ICD10,Chapter_XVI_6,Chapter XVI,2,Haemorrhagic and haematological disorders of fetus and newborn,P50,P61
+ICD10,Chapter_XVI_7,Chapter XVI,2,Transitory endocrine and metabolic disorders specific to fetus and newborn,P70,P74
+ICD10,Chapter_XVI_8,Chapter XVI,2,Digestive system disorders of fetus and newborn,P75,P78
+ICD10,Chapter_XVI_9,Chapter XVI,2,Conditions involving the integument and temperature regulation of fetus and newborn,P80,P83
+ICD10,Chapter_XVI_10,Chapter XVI,2,Other disorders originating in the perinatal period,P90,P96
+ICD10,Chapter_XVII_1,Chapter XVII,2,Congenital malformations of the nervous system,Q00,Q07
+ICD10,Chapter_XVII_2,Chapter XVII,2,"Congenital malformations of eye, ear, face and neck",Q10,Q18
+ICD10,Chapter_XVII_3,Chapter XVII,2,Congenital malformations of the circulatory system,Q20,Q28
+ICD10,Chapter_XVII_4,Chapter XVII,2,Congenital malformations of the respiratory system,Q30,Q34
+ICD10,Chapter_XVII_5,Chapter XVII,2,Cleft lip and cleft palate,Q35,Q37
+ICD10,Chapter_XVII_6,Chapter XVII,2,Other congenital malformations of the digestive system,Q38,Q45
+ICD10,Chapter_XVII_7,Chapter XVII,2,Congenital malformations of genital organs,Q50,Q56
+ICD10,Chapter_XVII_8,Chapter XVII,2,Congenital malformations of the urinary system,Q60,Q64
+ICD10,Chapter_XVII_9,Chapter XVII,2,Congenital malformations and deformations of the musculoskeletal system,Q65,Q79
+ICD10,Chapter_XVII_10,Chapter XVII,2,Other congenital malformations,Q80,Q89
+ICD10,Chapter_XVII_11,Chapter XVII,2,"Chromosomal abnormalities, not elsewhere classified",Q90,Q99
+ICD10,Chapter_XVIII_1,Chapter XVIII,2,Symptoms and signs involving the circulatory and respiratory systems,R00,R09
+ICD10,Chapter_XVIII_2,Chapter XVIII,2,Symptoms and signs involving the digestive system and abdomen,R10,R19
+ICD10,Chapter_XVIII_3,Chapter XVIII,2,Symptoms and signs involving the skin and subcutaneous tissue,R20,R23
+ICD10,Chapter_XVIII_4,Chapter XVIII,2,Symptoms and signs involving the nervous and musculoskeletal systems,R25,R29
+ICD10,Chapter_XVIII_5,Chapter XVIII,2,Symptoms and signs involving the urinary system,R30,R39
+ICD10,Chapter_XVIII_6,Chapter XVIII,2,"Symptoms and signs involving cognition, perception, emotional state and behaviour",R40,R46
+ICD10,Chapter_XVIII_7,Chapter XVIII,2,Symptoms and signs involving speech and voice,R47,R49
+ICD10,Chapter_XVIII_8,Chapter XVIII,2,General symptoms and signs,R50,R69
+ICD10,Chapter_XVIII_9,Chapter XVIII,2,"Abnormal findings on examination of blood, without diagnosis",R70,R79
+ICD10,Chapter_XVIII_10,Chapter XVIII,2,"Abnormal findings on examination of urine, without diagnosis",R80,R82
+ICD10,Chapter_XVIII_11,Chapter XVIII,2,"Abnormal findings on examination of other body fluids, substances and tissues, without diagnosis",R83,R89
+ICD10,Chapter_XVIII_12,Chapter XVIII,2,"Abnormal findings on diagnostic imaging and in function studies, without diagnosis",R90,R94
+ICD10,Chapter_XVIII_13,Chapter XVIII,2,Ill-defined and unknown causes of mortality,R95,R99
+ICD10,Chapter_XIX_1,Chapter XIX,2,Injuries to the head,S00,S09
+ICD10,Chapter_XIX_2,Chapter XIX,2,Injuries to the neck,S10,S19
+ICD10,Chapter_XIX_3,Chapter XIX,2,Injuries to the thorax,S20,S29
+ICD10,Chapter_XIX_4,Chapter XIX,2,"Injuries to the abdomen, lower back, lumbar spine and pelvis",S30,S39
+ICD10,Chapter_XIX_5,Chapter XIX,2,Injuries to the shoulder and upper arm,S40,S49
+ICD10,Chapter_XIX_6,Chapter XIX,2,Injuries to the elbow and forearm,S50,S59
+ICD10,Chapter_XIX_7,Chapter XIX,2,Injuries to the wrist and hand,S60,S69
+ICD10,Chapter_XIX_8,Chapter XIX,2,Injuries to the hip and thigh,S70,S79
+ICD10,Chapter_XIX_9,Chapter XIX,2,Injuries to the knee and lower leg,S80,S89
+ICD10,Chapter_XIX_10,Chapter XIX,2,Injuries to the ankle and foot,S90,S99
+ICD10,Chapter_XIX_11,Chapter XIX,2,Injuries involving multiple body regions,T00,T07
+ICD10,Chapter_XIX_12,Chapter XIX,2,"Injuries to unspecified part of trunk, limb or body region",T08,T14
+ICD10,Chapter_XIX_13,Chapter XIX,2,Effects of foreign body entering through natural orifice,T15,T19
+ICD10,Chapter_XIX_14,Chapter XIX,2,Burns and corrosions,T20,T32
+ICD10,Chapter_XIX_15,Chapter XIX,2,Frostbite,T33,T35
+ICD10,Chapter_XIX_16,Chapter XIX,2,"Poisoning by drugs, medicaments and biological substances",T36,T50
+ICD10,Chapter_XIX_17,Chapter XIX,2,Toxic effects of substances chiefly nonmedicinal as to source,T51,T65
+ICD10,Chapter_XIX_18,Chapter XIX,2,Other and unspecified effects of external causes,T66,T78
+ICD10,Chapter_XIX_19,Chapter XIX,2,Certain early complications of trauma,T79,T79
+ICD10,Chapter_XIX_20,Chapter XIX,2,"Complications of surgical and medical care, not elsewhere classified",T80,T88
+ICD10,Chapter_XIX_21,Chapter XIX,2,"Sequelae of injuries, of poisoning and of other consequences of external causes",T90,T98
+ICD10,Chapter_XX_1,Chapter XX,2,Accidents,V01,X59
+ICD10,Chapter_XX_2,Chapter XX,2,Intentional self-harm,X60,X84
+ICD10,Chapter_XX_3,Chapter XX,2,Assault,X85,Y09
+ICD10,Chapter_XX_4,Chapter XX,2,Event of undetermined intent,Y10,Y34
+ICD10,Chapter_XX_5,Chapter XX,2,Legal intervention and operations of war,Y35,Y36
+ICD10,Chapter_XX_6,Chapter XX,2,Complications of medical and surgical care,Y40,Y84
+ICD10,Chapter_XX_7,Chapter XX,2,Sequelae of external causes of morbidity and mortality,Y85,Y89
+ICD10,Chapter_XX_8,Chapter XX,2,Supplementary factors related to causes of morbidity and mortality classified elsewhere,Y90,Y98
+ICD10,Chapter_XXI_1,Chapter XXI,2,Persons encountering health services for examination and investigation,Z00,Z13
+ICD10,Chapter_XXI_2,Chapter XXI,2,Persons with potential health hazards related to communicable diseases,Z20,Z29
+ICD10,Chapter_XXI_3,Chapter XXI,2,Persons encountering health services in circumstances related to reproduction,Z30,Z39
+ICD10,Chapter_XXI_4,Chapter XXI,2,Persons encountering health services for specific procedures and health care,Z40,Z54
+ICD10,Chapter_XXI_5,Chapter XXI,2,Persons with potential health hazards related to socioeconomic and psychosocial circumstances,Z55,Z65
+ICD10,Chapter_XXI_6,Chapter XXI,2,Persons encountering health services in other circumstances,Z70,Z76
+ICD10,Chapter_XXI_7,Chapter XXI,2,Persons with potential health hazards related to family and personal history and certain conditions influencing health status,Z80,Z99

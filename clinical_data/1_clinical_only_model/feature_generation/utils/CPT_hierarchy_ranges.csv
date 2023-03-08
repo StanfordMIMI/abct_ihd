@@ -1,0 +1,134 @@
+﻿ONTOLOGY,UNIQUE_NAME,PARENT,HIERARCHY,DESC,RNG_MIN,RNG_MAX
+CPT,Anesthesia,NA,H1,Anesthesia,100,1999
+CPT,Surgery,NA,H1,Surgery,10021,69990
+CPT,Radiology,NA,H1,Radiology Services,70010,79999
+CPT,Pathology,NA,H1,Pathology and Laboratory Services,80047,89398
+CPT,Medical,NA,H1,Medical Services and Procedures,90281,99607
+CPT,Evaluation,NA,H1,Evaluation & Management Services,99201,99499
+CPT,Anesthesia_1,Anesthesia,H2,Anesthesia for Procedures on the Head ,100,222
+CPT,Anesthesia_2,Anesthesia,H2,Anesthesia for Procedures on the Neck ,300,352
+CPT,Anesthesia_3,Anesthesia,H2,Anesthesia for Procedures on the Thorax (Chest Wall and Shoulder Girdle) ,400,474
+CPT,Anesthesia_4,Anesthesia,H2,Anesthesia for Intrathoracic Procedures ,500,580
+CPT,Anesthesia_5,Anesthesia,H2,Anesthesia for Procedures on the Spine and Spinal Cord ,600,670
+CPT,Anesthesia_6,Anesthesia,H2,Anesthesia for Procedures on the Upper Abdomen ,700,797
+CPT,Anesthesia_7,Anesthesia,H2,Anesthesia for Procedures on the Lower Abdomen ,800,882
+CPT,Anesthesia_8,Anesthesia,H2,Anesthesia for Procedures on the Perineum ,902,952
+CPT,Anesthesia_9,Anesthesia,H2,Anesthesia for Procedures on the Pelvis (Except Hip) ,1112,1190
+CPT,Anesthesia_10,Anesthesia,H2,Anesthesia for Procedures on the Upper Leg (Except Knee) ,1200,1274
+CPT,Anesthesia_11,Anesthesia,H2,Anesthesia for Procedures on the Knee and Popliteal Area ,1320,1444
+CPT,Anesthesia_12,Anesthesia,H2,Anesthesia for Procedures on the Lower Leg (Below Knee) ,1462,1522
+CPT,Anesthesia_13,Anesthesia,H2,Anesthesia for Procedures on the Shoulder and Axilla ,1610,1682
+CPT,Anesthesia_14,Anesthesia,H2,Anesthesia for Procedures on the Upper Arm and Elbow ,1710,1782
+CPT,Anesthesia_15,Anesthesia,H2,"Anesthesia for Procedures on the Forearm, Wrist, and Hand ",1810,1860
+CPT,Anesthesia_16,Anesthesia,H2,Anesthesia for Radiological Procedures ,1916,1936
+CPT,Anesthesia_17,Anesthesia,H2,Anesthesia for Burn Excisions or Debridement Procedures ,1951,1953
+CPT,Anesthesia_18,Anesthesia,H2,Anesthesia for Obstetric Procedures ,1958,1969
+CPT,Anesthesia_19,Anesthesia,H2,Anesthesia for Other Procedures ,1990,1999
+CPT,Surgery_1,Surgery,H2,General Surgical Procedures,10000,10022
+CPT,Surgery_2,Surgery,H2,Surgical Procedures on the Integumentary System ,10040,19499
+CPT,Surgery_3,Surgery,H2,Surgical Procedures on the Musculoskeletal System ,20000,29999
+CPT,Surgery_4,Surgery,H2,Surgical Procedures on the Respiratory System ,30000,32999
+CPT,Surgery_5,Surgery,H2,Surgical Procedures on the Cardiovascular System ,33010,37799
+CPT,Surgery_6,Surgery,H2,Surgical Procedures on the Hemic and Lymphatic Systems ,38100,38999
+CPT,Surgery_7,Surgery,H2,Surgical Procedures on the Mediastinum and Diaphragm ,39000,39599
+CPT,Surgery_8,Surgery,H2,Surgical Procedures on the Digestive System ,40490,49999
+CPT,Surgery_9,Surgery,H2,Surgical Procedures on the Urinary System ,50010,53899
+CPT,Surgery_10,Surgery,H2,Surgical Procedures on the Male Genital System ,54000,55899
+CPT,Surgery_11,Surgery,H2,Reproductive System Procedures ,55920,55969
+CPT,Surgery_12,Surgery,H2,Intersex Surgery ,55970,55980
+CPT,Surgery_13,Surgery,H2,Surgical Procedures on the Female Genital System ,56405,58999
+CPT,Surgery_14,Surgery,H2,Surgical Procedures for Maternity Care and Delivery ,59000,59899
+CPT,Surgery_15,Surgery,H2,Surgical Procedures on the Endocrine System ,60000,60699
+CPT,Surgery_16,Surgery,H2,Surgical Procedures on the Nervous System ,61000,64999
+CPT,Surgery_17,Surgery,H2,Surgical Procedures on the Eye and Ocular Adnexa ,65091,68899
+CPT,Surgery_18,Surgery,H2,Surgical Procedures on the Auditory System ,69000,69979
+CPT,Surgery_19,Surgery,H2,Operating Microscope Procedures ,69990,69999
+CPT,Radiology_1,Radiology Services,H2,Diagnostic Radiology (Diagnostic Imaging) Procedures ,70000,76499
+CPT,Radiology_2,Radiology Services,H2,Diagnostic Ultrasound Procedures ,76500,76999
+CPT,Radiology_3,Radiology Services,H2,Radiologic Guidance ,77001,77032
+CPT,Radiology_4,Radiology Services,H2,"Breast, Mammography ",77046,77067
+CPT,Radiology_5,Radiology Services,H2,Bone/Joint Studies ,77071,77086
+CPT,Radiology_6,Radiology Services,H2,Radiation Oncology Treatment ,77261,77799
+CPT,Radiology_7,Radiology Services,H2,Nuclear Medicine Procedures ,78000,79999
+CPT,Pathology_8,Pathology and Laboratory Services,H2,Organ or Disease Oriented Panels ,80000,80081
+CPT,Pathology_9,Pathology and Laboratory Services,H2,Therapeutic Drug Assays ,80145,80299
+CPT,Pathology_10,Pathology and Laboratory Services,H2,Drug Assay Procedures ,80305,80377
+CPT,Pathology_11,Pathology and Laboratory Services,H2,Evocative/Suppression Testing Procedures ,80400,80440
+CPT,Pathology_12,Pathology and Laboratory Services,H2,Clinical Pathology Consultations ,80500,80502
+CPT,Pathology_13,Pathology and Laboratory Services,H2,Urinalysis Procedures ,81000,81099
+CPT,Pathology_14,Pathology and Laboratory Services,H2,Molecular Pathology Procedures ,81105,81408
+CPT,Pathology_15,Pathology and Laboratory Services,H2,Genomic Sequencing Procedures and Other Molecular Multianalyte Assays ,81410,81479
+CPT,Pathology_16,Pathology and Laboratory Services,H2,Multianalyte Assays with Algorithmic Analyses ,81490,81599
+CPT,Pathology_17,Pathology and Laboratory Services,H2,Chemistry Procedures ,82000,84999
+CPT,Pathology_18,Pathology and Laboratory Services,H2,Hematology and Coagulation Procedures ,85002,85999
+CPT,Pathology_19,Pathology and Laboratory Services,H2,Immunology Procedures ,86000,86849
+CPT,Pathology_20,Pathology and Laboratory Services,H2,Transfusion Medicine Procedures ,86850,86999
+CPT,Pathology_21,Pathology and Laboratory Services,H2,Microbiology Procedures ,87001,87999
+CPT,Pathology_22,Pathology and Laboratory Services,H2,Postmortem Examination Procedures ,88000,88099
+CPT,Pathology_23,Pathology and Laboratory Services,H2,Cytopathology Procedures ,88104,88199
+CPT,Pathology_24,Pathology and Laboratory Services,H2,Cytogenetic Studies ,88230,88299
+CPT,Pathology_25,Pathology and Laboratory Services,H2,Surgical Pathology Procedures ,88300,88399
+CPT,Pathology_26,Pathology and Laboratory Services,H2,"In Vivo (eg, Transcutaneous) Laboratory Procedures ",88720,88749
+CPT,Pathology_27,Pathology and Laboratory Services,H2,Other Pathology and Laboratory Procedures ,89049,89240
+CPT,Pathology_28,Pathology and Laboratory Services,H2,Reproductive Medicine Procedures ,89250,89398
+CPT,Medical_1,Medical Services and Procedures,H2,"Immune Globulins, Serum or Recombinant Products ",90281,90399
+CPT,Medical_2,Medical Services and Procedures,H2,Immunization Administration for Vaccines/Toxoids ,90460,90474
+CPT,Medical_3,Medical Services and Procedures,H2,"Vaccines, Toxoids ",90476,90756
+CPT,Medical_4,Medical Services and Procedures,H2,Psychiatry Services and Procedures ,90785,90899
+CPT,Medical_5,Medical Services and Procedures,H2,Biofeedback Services and Procedures ,90901,90913
+CPT,Medical_6,Medical Services and Procedures,H2,Dialysis Services and Procedures ,90935,90999
+CPT,Medical_7,Medical Services and Procedures,H2,Gastroenterology Procedures ,91000,91299
+CPT,Medical_8,Medical Services and Procedures,H2,Ophthalmology Services and Procedures ,92002,92499
+CPT,Medical_9,Medical Services and Procedures,H2,Special Otorhinolaryngologic Services and Procedures ,92502,92700
+CPT,Medical_10,Medical Services and Procedures,H2,Cardiovascular Procedures ,92920,93799
+CPT,Medical_11,Medical Services and Procedures,H2,Non-Invasive Vascular Diagnostic Studies ,93875,93998
+CPT,Medical_12,Medical Services and Procedures,H2,Pulmonary Procedures ,94002,94799
+CPT,Medical_13,Medical Services and Procedures,H2,Allergy and Clinical Immunology Procedures ,95004,95199
+CPT,Medical_14,Medical Services and Procedures,H2,Endocrinology Services ,95249,95251
+CPT,Medical_15,Medical Services and Procedures,H2,Neurology and Neuromuscular Procedures ,95700,96020
+CPT,Medical_16,Medical Services and Procedures,H2,Medical Genetics and Genetic Counseling Services ,96040,96099
+CPT,Medical_17,Medical Services and Procedures,H2,"Central Nervous System Assessments/Tests (eg, Neuro-Cognitive, Mental Status, Speech Testing) ",96105,96146
+CPT,Medical_18,Medical Services and Procedures,H2,Health and Behavior Assessment/Intervention Procedures ,96150,96171
+CPT,Medical_19,Medical Services and Procedures,H2,"Hydration, Therapeutic, Prophylactic, Diagnostic Injections and Infusions, and Chemotherapy and Other Highly Complex Drug or Highly Complex Biologic Agent Administration ",96360,96549
+CPT,Medical_20,Medical Services and Procedures,H2,Photodynamic Therapy Procedures ,96567,96574
+CPT,Medical_21,Medical Services and Procedures,H2,Special Dermatological Procedures ,96900,96999
+CPT,Medical_22,Medical Services and Procedures,H2,Adaptive Behavior Services ,97151,97158
+CPT,Medical_23,Medical Services and Procedures,H2,Physical Medicine and Rehabilitation Evaluations ,97161,97799
+CPT,Medical_24,Medical Services and Procedures,H2,Medical Nutrition Therapy Procedures ,97802,97804
+CPT,Medical_25,Medical Services and Procedures,H2,Acupuncture Procedures ,97810,97814
+CPT,Medical_26,Medical Services and Procedures,H2,Osteopathic Manipulative Treatment Procedures ,98925,98929
+CPT,Medical_27,Medical Services and Procedures,H2,Chiropractic Manipulative Treatment Procedures ,98940,98943
+CPT,Medical_28,Medical Services and Procedures,H2,Education and Training for Patient Self-Management ,98960,98962
+CPT,Medical_29,Medical Services and Procedures,H2,Non-Face-to-Face Nonphysician Services ,98966,98972
+CPT,Medical_30,Medical Services and Procedures,H2,"Special Services, Procedures and Reports ",99000,99091
+CPT,Medical_31,Medical Services and Procedures,H2,Qualifying Circumstances for Anesthesia ,99100,99140
+CPT,Medical_32,Medical Services and Procedures,H2,Moderate (Conscious) Sedation ,99151,99157
+CPT,Medical_33,Medical Services and Procedures,H2,Other Medicine Services and Procedures ,99170,99199
+CPT,Medical_34,Medical Services and Procedures,H2,Home Health Procedures and Services ,99500,99602
+CPT,Medical_35,Medical Services and Procedures,H2,Medication Therapy Management Services ,99605,99607
+CPT,Evaluation_1,Evaluation & Management Services,H2,Office or Other Outpatient Services ,99201,99215
+CPT,Evaluation_2,Evaluation & Management Services,H2,Hospital Observation Services ,99217,99226
+CPT,Evaluation_3,Evaluation & Management Services,H2,Hospital Inpatient Services ,99221,99239
+CPT,Evaluation_4,Evaluation & Management Services,H2,Consultation Services ,99241,99255
+CPT,Evaluation_5,Evaluation & Management Services,H2,Emergency Department Services ,99281,99288
+CPT,Evaluation_6,Evaluation & Management Services,H2,Critical Care Services ,99291,99292
+CPT,Evaluation_7,Evaluation & Management Services,H2,Nursing Facility Services ,99304,99318
+CPT,Evaluation_8,Evaluation & Management Services,H2,"Domiciliary, Rest Home (eg, Boarding Home), or Custodial Care Services ",99324,99337
+CPT,Evaluation_9,Evaluation & Management Services,H2,"Domiciliary, Rest Home (eg, Assisted Living Facility), or Home Care Plan Oversight Services ",99339,99340
+CPT,Evaluation_10,Evaluation & Management Services,H2,Home Services ,99341,99350
+CPT,Evaluation_11,Evaluation & Management Services,H2,Prolonged Services ,99354,99360
+CPT,Evaluation_12,Evaluation & Management Services,H2,Case Management Services ,99363,99368
+CPT,Evaluation_13,Evaluation & Management Services,H2,Care Plan Oversight Services ,99374,99380
+CPT,Evaluation_14,Evaluation & Management Services,H2,Preventive Medicine Services ,99381,99429
+CPT,Evaluation_15,Evaluation & Management Services,H2,Non-Face-to-Face Services ,99441,99444
+CPT,Evaluation_16,Evaluation & Management Services,H2,Special Evaluation and Management Services ,99450,99458
+CPT,Evaluation_17,Evaluation & Management Services,H2,Newborn Care Services ,99460,99463
+CPT,Evaluation_18,Evaluation & Management Services,H2,Delivery/Birthing Room Attendance and Resuscitation Services ,99464,99465
+CPT,Evaluation_19,Evaluation & Management Services,H2,Inpatient Neonatal Intensive Care Services and Pediatric and Neonatal Critical Care Services ,99466,99482
+CPT,Evaluation_20,Evaluation & Management Services,H2,Cognitive Assessment and Care Plan Services ,99483,99483
+CPT,Evaluation_21,Evaluation & Management Services,H2,General Behavioral Health Integration Care Management ,99484,99484
+CPT,Evaluation_22,Evaluation & Management Services,H2,Care Management Evaluation and Management Services ,99487,99491
+CPT,Evaluation_23,Evaluation & Management Services,H2,Psychiatric Collaborative Care Management Services ,99492,99494
+CPT,Evaluation_24,Evaluation & Management Services,H2,Transitional Care Evaluation and Management Services ,99495,99496
+CPT,Evaluation_25,Evaluation & Management Services,H2,Advance Care Planning Evaluation and Management Services ,99497,99498
+CPT,Evaluation_26,Evaluation & Management Services,H2,Other Evaluation and Management Services ,99499,99499
