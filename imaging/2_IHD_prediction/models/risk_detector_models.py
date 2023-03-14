@@ -22,7 +22,8 @@ class efficientNet(nn.Module):
         else:
             self.name = 'efficientnet-b6'
         if not pretrained:
-            raise NotImplementedError('You are trying to start a non-pretrained efficientnet model.')
+            self.model_conv = EfficientNet.from_name(self.name)
+            # raise NotImplementedError('You are trying to start a non-pretrained efficientnet model.')
         self.model_conv = EfficientNet.from_pretrained(self.name, num_classes=outFeatures)
 
     def sendToDevice(self, device):

@@ -14,6 +14,7 @@ conda create -n abct python=3.6.9
 conda activate abct
 while read requirement; do conda install --yes $requirement || pip install $requirement; done < requirements.txt
 ```
+Install will take a few minutes.
 
 ## Running Inference
 To perform IHD risk assessment using an L3 dcm slice, clinical covariates or both:
@@ -37,5 +38,11 @@ The dicom file name should be the anon_id specified in the clinical_data.csv fil
 
 If doing fusion inference, there should be a 1:1 correspondence between .dcm files and data rows in clinical_data.csv file.
 
+2a. Running the example with the provided sample data will produce the following contents in `prediction.csv` (the inference will take a few seconds):
+
+,I_C_fusion_1y,I_C_fusion_5y,clin_1y,clin_5y,img_1y,img_5y
+0,0.003137208128035517,0.14864155105868518,0.009014944545924664,0.08169373869895935,0.03344954922795296,0.1995564103126526
+
+Inference code been tested in Ubuntu 22.04.2 LTS with NVIDIA TITAN Xp GPU using CUDA 11.6.
 
 

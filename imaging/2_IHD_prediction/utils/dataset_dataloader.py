@@ -7,8 +7,26 @@ from skimage.measure import label, regionprops
 from torch.utils.data.dataset import Subset
 from scipy.ndimage import zoom
 import logging
-
+import pydicom 
+import os
+import warnings
 ### Dataset utils
+def convert_to_HU(img, rescaleSlope, rescaleIntercept):
+    """
+    Converts raw pixel values to HU using the slope and intercept from dicom
+    """
+    hu_img = np.copy(img).astype(np.int16)
+    #Set pixels outside of scan to 0
+    hu_img[hu_img==-2000] = 0
+    
+    if rescaleSlope != 1:
+        hu_img = rescaleSlope * hu_img.astype(np.float64)
+        hu_img = hu_img.astype(np.int16)
+    
+    hu_img += np.int16(rescaleIntercept)
+    
+    return np.array(hu_img, dtype=np.int16)
+
 def load_data(data_path, keep_all_keys=True, dataset_path=None, label_mapper=None):
     """
     Loads images, spacings, labels (outcomes) and ids (names)
@@ -80,7 +98,34 @@ def normalize_and_preprocess(images, num_neighbors, val_zero, val_one, spacings,
         images_norm.append(stacked)
 
     return np.array(images_norm)
-
+def normalize_and_preprocess_dcm(images, val_zero, val_one, spacings, normalize_spacing=False,\
+                            new_spacing=1, final_size=(3,256,256), mean_fat=False, remove_bed=False,\
+                            as_integer=False):
+    """
+    Returns a preprocessed np array containing images
+    Params:
+        images: original numpy array containing images with pixels in HU
+        val_zero: HU below which pixels will be set to black (0)
+        val_one: HU above which pixel values will be set to white (1 or 255)
+        spacings: list containing [x,y,z] pixel spacings for each image
+        normalize_spacing: whether or not to normalize spacing
+        new_spacing: new spacing in mm to normalize image to
+        final_size: shape of final image e.g. 3,256,256
+        mean_fat: whether or not to modify HU in [-190,-30] to -110
+        remove_bed: whether or not to remove bed from field of view
+        as_integer: whether or not to represent as integer
+    Returns:
+        images_norms: array of normalized images
+    """
+    images_norm = []
+    import matplotlib.pyplot as plt
+    for image, s in zip(images, spacings): 
+        input_shape = image.shape    
+        zeroToOne = normalizeOneSlice(image, mean_fat, s, normalize_spacing, new_spacing,\
+                                    final_size, val_zero, val_one, remove_bed, as_integer)
+        stacked = np.repeat(zeroToOne[:,:,np.newaxis], 3, axis=2)
+        images_norm.append(stacked)
+    return images_norm
 def normalizeOneSlice(image, mean_fat, orig_spacing, normalize_spacing, new_spacing,\
                         final_size, val_zero, val_one, remove_bed, as_integer):
     """
@@ -89,16 +134,20 @@ def normalizeOneSlice(image, mean_fat, orig_spacing, normalize_spacing, new_spac
     if mean_fat:
         image = normalize_fat(image)
     if normalize_spacing:
-        image = zoom(image, new_spacing/orig_spacing[:2]) 
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            image = zoom(image, [new_spacing/x for x in orig_spacing[:2]]) 
     masked = np.clip(image, val_zero, val_one)
     orig_size = masked.shape
     resized = zoom(masked, [final_size[1]/orig_size[0], final_size[2]/orig_size[1]])
     zeroToOne = normalize_to_zero_one(resized, val_zero, val_one)
     if remove_bed:
         zeroToOne = bed_removal(zeroToOne)
+        
     if as_integer:
         zeroToOne *= 255
         zeroToOne = zeroToOne.astype('uint8')
+        
     return zeroToOne
 
 def getIDsofInterest(split_path,label_col):
@@ -134,8 +183,52 @@ def getLabels(ids, dataset_path, label_col):
     assert np.sum(labels) == len(ids)
     return labels
 
+class dcmDataset(torch.utils.data.Dataset):
+    def __init__(self, config, dcm_dir, transform=None):
+        self.config = config
+        self.dcm_dir = dcm_dir
+        self.transform = None
+        self.raw_data = self.load_dicoms()
+        self.keys = [x['ID'] for x in self.raw_data]
+        
 
-class h5Dataset(data.Dataset):
+        images = normalize_and_preprocess_dcm(images=[x['img'] for x in self.raw_data], 
+                                                val_zero=self.config['thresh_low'],
+                                                val_one=self.config['thresh_high'], 
+                                                spacings=[x['spacing'] for x in self.raw_data], 
+                                                normalize_spacing=self.config['normalize_spacing'], 
+                                                new_spacing=self.config['new_spacing'], 
+                                                final_size=self.config['new_img_size'], 
+                                                mean_fat=self.config['normalize_fat'], 
+                                                remove_bed=self.config['remove_bed'], 
+                                                as_integer=self.config['as_integer'])
+                                              
+        self.images = {k:v for k,v in zip(self.keys, images)}
+        # self.images={x['ID']:x['img'] for x in self.raw_data}                                              
+    def load_dicoms(self):
+        data = []
+        dcm_files = os.listdir(self.dcm_dir)
+        for f in dcm_files:
+            dcm = pydicom.dcmread(os.path.join(self.dcm_dir, f))
+            pixels = convert_to_HU(dcm.pixel_array, dcm.RescaleSlope, dcm.RescaleIntercept)
+            spacing = dcm.PixelSpacing
+            thickness = dcm.SliceThickness
+            data.append({'ID':f.replace('.dcm',''), 'img':pixels, 'spacing':spacing, 'thickness':thickness})
+        return data
+        
+    def setTransform(self, transform):
+        self.transform = transform
+        return
+    def __len__(self):
+        return len(self.keys)
+    def __getitem__(self, index):        
+        k = self.keys[index]
+        x = self.images[k]
+        if self.transform is not None:
+            x = self.transform(x)
+        return x, k
+
+class h5Dataset(torch.utils.data.Dataset):
     def __init__(self, config, transform=None):
         self.config = config
         self.fpath = self.config['data_file']

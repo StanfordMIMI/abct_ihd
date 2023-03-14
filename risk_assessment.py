@@ -7,7 +7,6 @@ Performs 1 and 5y IHD risk assessment using:
 """
 
 import argparse
-import joblib
 import os
 import configparser
 import torch
@@ -19,6 +18,8 @@ from torch.nn.functional import softmax
 risk_img_models = import_module('imaging.2_IHD_prediction.models.risk_detector_models')
 ihd_dataloader = import_module('imaging.2_IHD_prediction.utils.dataset_dataloader')
 data_transforms = import_module('imaging.2_IHD_prediction.utils.data_transforms')
+import numpy as np
+import joblib
 
 def get_device():
     if torch.cuda.is_available():
@@ -97,14 +98,14 @@ def load_models(risk_assessment, trained_model_dir, device=torch.device('cpu')):
         models['img_5y'] = get_model(best_5y_image_only_model_path, best_5y_image_only_config_path)
         
     if risk_assessment == 'C' or risk_assessment == 'both':
-        best_1y_clin_only_model_path = os.path.join(trained_model_dir,'clinical_1y.pkl')
         best_5y_clin_only_model_path = os.path.join(trained_model_dir,'clinical_5y.pkl')
+        best_1y_clin_only_model_path = os.path.join(trained_model_dir,'clinical_1y.pkl')
         models['clin_1y'] = joblib.load(best_1y_clin_only_model_path)
         models['clin_5y'] = joblib.load(best_5y_clin_only_model_path)
-
+        
     if risk_assessment == 'both':
-        best_1y_ICfusion_model_path = os.path.join(trained_model_dir,'img_clin_fusion_1y.pkl')
         best_5y_ICfusion_model_path = os.path.join(trained_model_dir,'img_clin_fusion_5y.pkl')
+        best_1y_ICfusion_model_path = os.path.join(trained_model_dir,'img_clin_fusion_1y.pkl')
         models['ICfusion_1y'] = joblib.load(best_1y_ICfusion_model_path)
         models['ICfusion_5y'] = joblib.load(best_5y_ICfusion_model_path)
         
@@ -124,6 +125,10 @@ def load_image_data(image_data_dir, trained_model_dir):
     return dataloader
 def load_clinical_data(clinical_data_path, desired_cols, id_col='anon_id'):
     data = pd.read_csv(clinical_data_path)
+    if 'age' in data.columns:
+        data = data.rename(columns={'age':'age_at_scan'})
+    if 'sex' in data.columns:
+        data['gender'] =  data.apply(lambda x: 0 if 'female' in x['sex'] else 1, axis=1)
     return data[id_col], data[desired_cols]
 
 def get_img_preds(models, image_data, device):
@@ -147,13 +152,13 @@ def get_img_preds(models, image_data, device):
 
 def get_clin_preds(clinical_data_path, models):
     ids, clin_data_1y = load_clinical_data(clinical_data_path, models['clin_1y'].get_booster().feature_names)
+    
     _, clin_data_5y = load_clinical_data(clinical_data_path, models['clin_5y'].get_booster().feature_names)
-
+    
     clin_1y_preds = models['clin_1y'].predict_proba(clin_data_1y)[:,1].tolist()
     clin_5y_preds = models['clin_5y'].predict_proba(clin_data_5y)[:,1].tolist()
 
-
-    return {k:{'clin_1y':p1, 'clin_5y':p2} for k,p1,p2 in zip(ids, clin_1y_preds, clin_5y_preds)}
+    return {str(k):{'clin_1y':p1, 'clin_5y':p2} for k,p1,p2 in zip(ids, clin_1y_preds, clin_5y_preds)}
 
 def get_fusion_preds(preds, models):
     for k in preds:
@@ -170,9 +175,8 @@ def main():
     risk_assessment, trained_model_dir, image_data_dir, clinical_data_path, out_dir = parse_args()
     device = get_device()
     
-    
     models = load_models(risk_assessment, trained_model_dir, device)
-    
+    print("loaded models")
     if risk_assessment=='I' or risk_assessment=='both':
         ## IHD Risk Assessment using L3 slice
         image_data = load_image_data(image_data_dir, trained_model_dir)
@@ -181,7 +185,7 @@ def main():
     if risk_assessment=='C' or risk_assessment=='both':
         ## IHD Risk Assessment using L3 slice
         clin_preds = get_clin_preds(clinical_data_path, models)
-    
+        print(clin_preds)
     if risk_assessment=='both':
         preds = {k:{**v, **clin_preds[k]} for k,v in img_preds.items()}
         preds = get_fusion_preds(preds, models)
@@ -189,6 +193,7 @@ def main():
         preds = img_preds
     elif risk_assessment=='C':    
         preds = clin_preds
+    
     pd.DataFrame(preds).transpose().to_csv(os.path.join(out_dir, f'predictions_{risk_assessment}.csv'))
            
 if __name__ == '__main__':
