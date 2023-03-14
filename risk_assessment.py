@@ -176,7 +176,6 @@ def main():
     device = get_device()
     
     models = load_models(risk_assessment, trained_model_dir, device)
-    print("loaded models")
     if risk_assessment=='I' or risk_assessment=='both':
         ## IHD Risk Assessment using L3 slice
         image_data = load_image_data(image_data_dir, trained_model_dir)
@@ -185,7 +184,7 @@ def main():
     if risk_assessment=='C' or risk_assessment=='both':
         ## IHD Risk Assessment using L3 slice
         clin_preds = get_clin_preds(clinical_data_path, models)
-        print(clin_preds)
+        
     if risk_assessment=='both':
         preds = {k:{**v, **clin_preds[k]} for k,v in img_preds.items()}
         preds = get_fusion_preds(preds, models)
